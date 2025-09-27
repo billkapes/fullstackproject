@@ -1,0 +1,33 @@
+@page "/fetchproducts"
+
+<h3>Product List</h3>
+
+<ul>
+   @if (products != null)
+    {
+        foreach (var product in products)
+        {
+            <li>@product.Name - $@product.Price</li>
+        }
+    }
+    else
+    {
+        <li>Loading...</li>
+    }
+</ul>
+
+@code {
+    private Product[]? products;
+    protected override async Task OnInitializedAsync()
+    {
+        // API call logic will go here
+    }
+
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public int Stock { get; set; }
+    }
+}
