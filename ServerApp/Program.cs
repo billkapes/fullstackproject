@@ -6,7 +6,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: AllowClientCorsPolicy, policy =>
     {
-        policy.WithOrigins("http://localhost:5227")
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -17,7 +17,7 @@ var app = builder.Build();
 app.UseCors(AllowClientCorsPolicy);
 
 app.MapGet(
-    "/api/products",
+    "/api/productList",
     () =>
     {
         return new[]

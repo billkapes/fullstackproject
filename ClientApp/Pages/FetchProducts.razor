@@ -1,5 +1,6 @@
 @page "/fetchproducts"
 @using System.Net.Http.Json
+@using System.Text.Json
 
 <h3>Product List</h3>
 
@@ -8,7 +9,7 @@
     {
         foreach (var product in products)
         {
-            <li>@product.Name - $@product.Price</li>
+            <li>@(product.Name ?? "(no name)") - @product.Price.ToString("C")</li>
         }
     }
     else
@@ -33,12 +34,22 @@
         try
         {
             // Call the server endpoint and deserialize JSON into Product[]
-            products = await Http.GetFromJsonAsync<Product[]>("http://localhost:5015/api/products");
+            //products = await Http.GetFromJsonAsync<Product[]>("http://localhost:5015/api/productList");
+
+            var response = await Http.GetAsync("http://localhost:5015/api/productList");
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            products = JsonSerializer.Deserialize<Product[]>(json, options);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             // On error, keep products null (or you could set to empty and show an error)
-            products = Array.Empty<Product>();
+            //products = Array.Empty<Product>();
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 
