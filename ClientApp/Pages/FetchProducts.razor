@@ -1,4 +1,5 @@
 @page "/fetchproducts"
+@using System.Net.Http.Json
 
 <h3>Product List</h3>
 
@@ -17,16 +18,34 @@
 </ul>
 
 @code {
+    [Inject]
+    private HttpClient? Http { get; set; }
+
     private Product[]? products;
     protected override async Task OnInitializedAsync()
     {
-        // API call logic will go here
+        if (Http is null)
+        {
+            // HttpClient not available - leave products null so UI shows Loading
+            return;
+        }
+
+        try
+        {
+            // Call the server endpoint and deserialize JSON into Product[]
+            products = await Http.GetFromJsonAsync<Product[]>("http://localhost:5015/api/products");
+        }
+        catch (Exception)
+        {
+            // On error, keep products null (or you could set to empty and show an error)
+            products = Array.Empty<Product>();
+        }
     }
 
     public class Product
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public double Price { get; set; }
         public int Stock { get; set; }
     }
