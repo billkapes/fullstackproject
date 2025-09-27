@@ -1,0 +1,79 @@
+# .gitignore for a mixed .NET (ASP.NET/Blazor) solution
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build artifacts
+/bin/
+/obj/
+**/bin/
+**/obj/
+
+# ASP.NET publish
+/publish/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Logs
+*.log
+logs/
+
+# IIS Express
+.vs/IEExpress/
+.vs/*/applicationHost.config
+.vs/*/config/
+.vs/*/trace.log
+.vs/*/logs/
+.vs/*/history/
+.vs/*/web.config
+
+# User-specific files
+*.userprefs
+*.suo
+
+# Dotnet user secrets
+secrets.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ClientApp (Blazor/Web) build outputs - adjust if you check in published assets intentionally
+/ClientApp/bin/
+/ClientApp/obj/
+/ClientApp/wwwroot/_framework/
+
+# ServerApp build outputs
+/ServerApp/bin/
+/ServerApp/obj/
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE directories
+/.idea/
+/.vscode/
+
