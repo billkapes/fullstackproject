@@ -44,7 +44,9 @@ public class ProductService
     {
         try
         {
-            var products = await _http.GetFromJsonAsync<Product[]>("api/productList") ?? Array.Empty<Product>();
+            var products =
+                await _http.GetFromJsonAsync<Product[]>("api/productList")
+                ?? Array.Empty<Product>();
             _cache = products;
             _cachedAt = DateTime.UtcNow;
             return products;
