@@ -1,5 +1,5 @@
 Summary
-- During this task Copilot helped generate and iterate on integration code (Blazor client ↔ minimal API server), debug runtime and build issues, rethink the JSON contract, and add caching/optimization to reduce redundant calls and payload cost. Copilot acted as a rapid pair‑programmer: suggesting implementations, producing small code edits, and prompting the right checks (build, DI lifetime, HTTP base addresses, and serialization options).
+- During this task Copilot helped generate and iterate on integration code (Blazor client <> minimal API server), debug runtime and build issues, rethink the JSON contract, and add caching/optimization to reduce redundant calls and payload cost. Copilot acted as a rapid pair‑programmer: suggesting implementations, producing small code edits, and prompting the right checks (build, DI lifetime, HTTP base addresses, and serialization options).
 --- 
 How Copilot assisted
 
@@ -19,7 +19,7 @@ How Copilot assisted
     - Copilot recommended industry-friendly changes: camelCase property names for public APIs, typed DTOs instead of anonymous objects, and representing monetary values safely (priceCents + currency) to avoid floating point issues.
     - It also suggested adding an envelope response (items/total/page) and using OpenAPI docs when appropriate.
     - Benefit: these recommendations helped move the API toward predictable, maintainable shapes that are easier for clients to consume.
-    
+
 4. Performance and caching
     - Copilot helped implement both server- and client-side caching:
         - Server: added IMemoryCache usage to store the serialized JSON bytes and computed an SHA256-based ETag so clients could get 304 Not Modified and proxies could cache responses (Cache-Control + ETag).
