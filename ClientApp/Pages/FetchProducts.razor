@@ -2,6 +2,7 @@
 @using System.Net.Http.Json
 @using System.Text.Json
 
+@* Copilot generated this html to display the product list *@
 <h3>Product List</h3>
 
 <ul>
@@ -19,6 +20,7 @@
 </ul>
 
 @code {
+    // Copilot injected the HttpClient property
     [Inject]
     private HttpClient? Http { get; set; }
 
@@ -33,6 +35,7 @@
 
         try
         {
+            // Copilot suggested adding the options for case insensitive deserialization to fix issue with property names
             // Call the server endpoint and deserialize JSON into Product[]
             //products = await Http.GetFromJsonAsync<Product[]>("http://localhost:5015/api/productList");
 
@@ -53,6 +56,7 @@
         }
     }
 
+    // Copilot added the Product class to create a model for deserialization
     public class Product
     {
         public int Id { get; set; }
